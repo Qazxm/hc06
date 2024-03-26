@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".BluetoothActivity">
+
+    <TextView
+        android:id="@+id/tvBluetoothStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth 상태"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnSendData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="데이터 전송"
+        android:layout_below="@id/tvBluetoothStatus"
+        android:layout_marginTop="16dp"/>
+
+    <ListView
+        android:id="@+id/deviceListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnSendData"
+        android:layout_marginTop="16dp"/>
+
+    <!-- 기타 필요한 UI 요소들을 추가하세요 -->
+
+</RelativeLayout>
