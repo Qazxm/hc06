@@ -59,29 +59,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTvBluetoothStatus = (TextView) findViewById(R.id.tvBluetoothStatus);
         mTvReceiveData = (TextView) findViewById(R.id.tvReceiveData);
         mTvSendData = (EditText) findViewById(R.id.tvSendData);
-        mBtnBluetoothOn = (Button) findViewById(R.id.btnBluetoothOn);
-        mBtnBluetoothOff = (Button) findViewById(R.id.btnBluetoothOff);
         mBtnConnect = (Button) findViewById(R.id.btnConnect);
         mBtnSendData = (Button) findViewById(R.id.btnSendData);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
 
-        mBtnBluetoothOn.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bluetoothOn();
-            }
-        });
-        mBtnBluetoothOff.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bluetoothOff();
-            }
-        });
+
         mBtnConnect.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,40 +117,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intentBluetoothEnable, BT_REQUEST_ENABLE);
             }
         }
-    }
-
-    void bluetoothOff() {
-        if (mBluetoothAdapter.isEnabled()) {
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
-            mBluetoothAdapter.disable();
-            Toast.makeText(getApplicationContext(), "블루투스가 비활성화 되었습니다.", Toast.LENGTH_SHORT).show();
-            mTvBluetoothStatus.setText("비활성화");
-        } else {
-            Toast.makeText(getApplicationContext(), "블루투스가 이미 비활성화 되어 있습니다.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == BT_REQUEST_ENABLE) {
-            if (resultCode == RESULT_OK) { // 블루투스 활성화를 확인을 클릭하였다면
-                Toast.makeText(getApplicationContext(), "블루투스 활성화", Toast.LENGTH_LONG).show();
-                mTvBluetoothStatus.setText("활성화");
-            } else if (resultCode == RESULT_CANCELED) { // 블루투스 활성화를 취소를 클릭하였다면
-                Toast.makeText(getApplicationContext(), "취소", Toast.LENGTH_LONG).show();
-                mTvBluetoothStatus.setText("비활성화");
-            }
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     void listPairedDevices() {

@@ -71,6 +71,7 @@ public class BluetoothActivity extends AppCompatActivity {
     }
 
     // 블루투스 활성화 메서드
+// 블루투스 활성화 메서드
     void bluetoothOn() {
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -87,6 +88,7 @@ public class BluetoothActivity extends AppCompatActivity {
             startActivityForResult(enableBtIntent, 1);
         }
     }
+
 
     // 페어링된 장치 목록 표시 메서드
     @SuppressLint("WrongViewCast")
@@ -124,19 +126,6 @@ public class BluetoothActivity extends AppCompatActivity {
         });
     }
 
-    // 액티비티가 활성화될 때 호출되는 메서드
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "블루투스가 활성화되었습니다.", Toast.LENGTH_SHORT).show();
-                showPairedDevices(); // Bluetooth 활성화 후 페어링된 장치 목록 표시
-            } else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "블루투스 활성화가 취소되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
     // 블루투스 기기 연결을 위한 메서드
     void connectDevice(String deviceName) {
